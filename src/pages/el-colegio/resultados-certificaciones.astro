@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Resultados y Certificaciones - Colegio COLREY | ICFES y Cambridge English"
+  description="Resultados ICFES sobresalientes: primeros lugares en Boyacá. Certificación internacional Cambridge English. Conoce nuestros logros académicos y certificaciones."
+>
+  <!-- Hero Visual -->
+  <section class="relative py-32 lg:py-40 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="/img_00.png" alt="Resultados académicos COLREY" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-700/85 via-primary-600/80 to-primary-800/85"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center text-white fade-in-up">
+        <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl">
+          Resultados que<br />hablan por sí solos
+        </h1>
+        <p class="text-xl lg:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
+          Excelencia académica que trasciende lo académico
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Métricas Animadas -->
+  <section class="py-20 lg:py-32 bg-white">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+          <div class="text-center fade-in-up">
+            <div class="text-7xl lg:text-8xl font-bold text-primary-600 mb-4 counter" data-target="25">0</div>
+            <div class="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-3">años</div>
+            <p class="text-gray-700 text-lg">de experiencia educativa transformando vidas</p>
+          </div>
+          <div class="text-center fade-in-up">
+            <div class="text-7xl lg:text-8xl font-bold text-primary-600 mb-4">ICFES</div>
+            <div class="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-3">resultados</div>
+            <p class="text-gray-700 text-lg">primeros lugares en Boyacá</p>
+          </div>
+          <div class="text-center fade-in-up">
+            <div class="text-7xl lg:text-8xl font-bold text-primary-600 mb-4">Cambridge</div>
+            <div class="text-sm uppercase tracking-wider text-gray-500 font-semibold mb-3">certificado</div>
+            <p class="text-gray-700 text-lg">certificación internacional</p>
+          </div>
+        </div>
+
+        <!-- Narrativa -->
+        <div class="max-w-4xl mx-auto fade-in-up">
+          <p class="text-xl text-gray-700 leading-relaxed mb-8">
+            En COLREY, los resultados académicos no son un fin en sí mismos, sino el reflejo natural de un modelo educativo que prioriza la felicidad, el aprendizaje significativo y el desarrollo integral de cada estudiante.
+          </p>
+          <p class="text-xl text-gray-700 leading-relaxed mb-12">
+            Estos logros son el resultado del trabajo conjunto entre estudiantes motivados, familias comprometidas y docentes que acompañan cada proceso de aprendizaje. No buscamos competir por números, sino formar personas íntegras que, al mismo tiempo, alcanzan la excelencia académica.
+          </p>
+        </div>
+
+        <!-- Cards con Narrativa -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div class="bg-gradient-to-br from-primary-50 to-white p-8 rounded-2xl border border-primary-100 shadow-lg hover:shadow-xl transition-all fade-in-up">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Metodología que funciona</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Nuestro enfoque lúdico y centrado en la felicidad no compromete la excelencia académica. Por el contrario, cuando los estudiantes disfrutan aprendiendo, los resultados mejoran naturalmente.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-primary-50 to-white p-8 rounded-2xl border border-primary-100 shadow-lg hover:shadow-xl transition-all fade-in-up">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Acompañamiento personalizado</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Cada estudiante recibe el apoyo necesario para alcanzar su máximo potencial. Docentes comprometidos y familias involucradas crean el ambiente ideal para el éxito académico.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soporte Visual -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="max-w-5xl mx-auto fade-in-up">
+        <img src="/img_00.png" alt="Excelencia académica COLREY" class="w-full h-auto rounded-3xl shadow-2xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="py-20 lg:py-32 bg-white">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center fade-in-up">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          Conoce nuestro modelo educativo
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Descubre cómo logramos combinar felicidad, metodología innovadora y excelencia académica
+        </p>
+        <a href="/el-colegio/modelo-educativo" class="inline-block bg-primary-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-700 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+          Ver modelo educativo
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  section:nth-child(1) .fade-in-up {
+    animation-delay: 0.2s;
+  }
+
+  section:nth-child(2) .fade-in-up:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  section:nth-child(2) .fade-in-up:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  section:nth-child(2) .fade-in-up:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-up {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Counter animation
+  function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 1500;
+    const increment = target / (duration / 16);
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target;
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current);
+      }
+    }, 16);
+  }
+
+  // Scroll reveal animations
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        
+        // Animate counter if element has counter class
+        const counter = entry.target.querySelector('.counter');
+        if (counter && !counter.classList.contains('animated')) {
+          counter.classList.add('animated');
+          animateCounter(counter);
+        }
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in-up').forEach(el => {
+    observer.observe(el);
+  });
+</script>

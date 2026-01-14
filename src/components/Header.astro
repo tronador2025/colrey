@@ -1,0 +1,138 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <nav class="container mx-auto px-4 lg:px-6">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-3 group">
+        <img 
+          src="/colrey_logo.png" 
+          alt="Colegio COLREY" 
+          class="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
+        />
+        <div class="hidden sm:block">
+          <div class="font-bold text-xl text-gray-900">COLREY</div>
+          <div class="text-xs text-gray-600">Colegio COLREY</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-1">
+        <a href="/" class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath === '/' ? 'bg-primary-50 text-primary-700' : 'text-gray-700 hover:bg-gray-50'}`}>
+          Inicio
+        </a>
+        
+        <div class="relative group">
+          <button class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center space-x-1">
+            <span>El Colegio</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+            <a href="/el-colegio/nosotros" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-t-lg">Nosotros</a>
+            <a href="/el-colegio/modelo-educativo" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700">Modelo Educativo</a>
+            <a href="/el-colegio/resultados-certificaciones" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-b-lg">Resultados y Certificaciones</a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <button class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center space-x-1">
+            <span>Admisiones 2026</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+            <a href="/admisiones-2026" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-t-lg">Proceso de admisión</a>
+            <a href="/admisiones-2026#requisitos" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700">Requisitos</a>
+            <a href="/admisiones-2026#formulario" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700">Formulario de inscripción</a>
+            <a href="/utiles-escolares-2026" class="block px-4 py-3 text-sm font-semibold text-primary-700 hover:bg-primary-50 rounded-b-lg">Útiles escolares 2026</a>
+          </div>
+        </div>
+
+        <a href="/vida-escolar" class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath.startsWith('/vida-escolar') ? 'bg-primary-50 text-primary-700' : 'text-gray-700 hover:bg-gray-50'}`}>
+          Vida Escolar
+        </a>
+
+        <div class="relative group">
+          <button class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center space-x-1">
+            <span>Plataformas</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+            <a href="/plataformas/q10" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-t-lg">Login Q10</a>
+            <a href="/plataformas/santillana" class="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 rounded-b-lg">Santillana</a>
+          </div>
+        </div>
+
+        <a href="/contacto" class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath === '/contacto' ? 'bg-primary-50 text-primary-700' : 'text-gray-700 hover:bg-gray-50'}`}>
+          Contacto
+        </a>
+      </div>
+
+      <!-- CTA Button -->
+      <a href="/admisiones-2026" class="hidden lg:block bg-primary-600 text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-700 transition-colors shadow-sm">
+        Admisiones 2026
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden pb-4 border-t border-gray-200 mt-2">
+      <div class="pt-4 space-y-1">
+        <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Inicio</a>
+        <div class="px-4 py-2">
+          <div class="text-sm font-semibold text-gray-900 mb-2">El Colegio</div>
+          <div class="pl-4 space-y-1">
+            <a href="/el-colegio/nosotros" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Nosotros</a>
+            <a href="/el-colegio/modelo-educativo" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Modelo Educativo</a>
+            <a href="/el-colegio/resultados-certificaciones" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Resultados y Certificaciones</a>
+          </div>
+        </div>
+        <div class="px-4 py-2">
+          <div class="text-sm font-semibold text-gray-900 mb-2">Admisiones 2026</div>
+          <div class="pl-4 space-y-1">
+            <a href="/admisiones-2026" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Proceso de admisión</a>
+            <a href="/admisiones-2026#requisitos" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Requisitos</a>
+            <a href="/admisiones-2026#formulario" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Formulario</a>
+            <a href="/utiles-escolares-2026" class="block py-2 text-sm font-semibold text-primary-700">Útiles escolares 2026</a>
+          </div>
+        </div>
+        <a href="/vida-escolar" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Vida Escolar</a>
+        <div class="px-4 py-2">
+          <div class="text-sm font-semibold text-gray-900 mb-2">Plataformas</div>
+          <div class="pl-4 space-y-1">
+            <a href="/plataformas/q10" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Login Q10</a>
+            <a href="/plataformas/santillana" class="block py-2 text-sm text-gray-600 hover:text-primary-700">Santillana</a>
+          </div>
+        </div>
+        <a href="/contacto" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Contacto</a>
+        <a href="/admisiones-2026" class="block mx-4 mt-4 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary-700 transition-colors">
+          Admisiones 2026
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

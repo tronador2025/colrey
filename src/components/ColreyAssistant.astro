@@ -1,0 +1,276 @@
+---
+interface Props {
+  question?: string;
+}
+
+const { question = '' } = Astro.props;
+
+const faqs = {
+  'admisiones': {
+    title: 'Admisiones 2026',
+    answer: 'Las admisiones 2026 están abiertas. El proceso incluye: solicitud de información, reunión informativa, entrega de documentos, evaluación y entrevista, comunicación de resultados y matrícula. Puedes iniciar el proceso completando el formulario en nuestra página de admisiones.',
+    action: {
+      text: 'Iniciar proceso de admisión',
+      link: '/admisiones-2026',
+      whatsapp: false
+    }
+  },
+  'costos': {
+    title: 'Costos y pensiones',
+    answer: 'Para conocer los costos y pensiones del año 2026, te invitamos a una reunión informativa donde resolveremos todas tus dudas. También puedes contactarnos directamente a través de WhatsApp o completar el formulario de contacto.',
+    action: {
+      text: 'Solicitar información de costos',
+      link: '/contacto',
+      whatsapp: true
+    }
+  },
+  'metodologia': {
+    title: 'Nuestra metodología',
+    answer: 'Nuestro modelo educativo se centra en la felicidad del estudiante, combinando aprendizaje significativo con metodologías lúdicas. Los estudiantes aprenden jugando, desarrollan competencias reales en inglés y alcanzan excelencia académica con valores sólidos.',
+    action: {
+      text: 'Conocer más sobre el modelo educativo',
+      link: '/el-colegio/modelo-educativo',
+      whatsapp: false
+    }
+  },
+  'cambridge': {
+    title: 'Certificación Cambridge',
+    answer: 'Somos una institución certificada por Cambridge English. Nuestros estudiantes desarrollan competencias comunicativas reales en inglés desde Prejardín, con certificación internacional que valida su dominio del idioma.',
+    action: {
+      text: 'Ver resultados y certificaciones',
+      link: '/el-colegio/resultados-certificaciones',
+      whatsapp: false
+    }
+  },
+  'contacto': {
+    title: 'Información de contacto',
+    answer: 'Puedes contactarnos a través de nuestro formulario de contacto, por WhatsApp o visitarnos en nuestras instalaciones. Nuestro equipo de admisiones está disponible para resolver todas tus dudas.',
+    action: {
+      text: 'Ir a contacto',
+      link: '/contacto',
+      whatsapp: true
+    }
+  }
+};
+
+function getAnswer(input: string) {
+  const lowerInput = input.toLowerCase();
+  
+  if (lowerInput.includes('admision') || lowerInput.includes('inscripcion') || lowerInput.includes('matricula')) {
+    return faqs.admisiones;
+  }
+  if (lowerInput.includes('costo') || lowerInput.includes('pension') || lowerInput.includes('precio') || lowerInput.includes('valor')) {
+    return faqs.costos;
+  }
+  if (lowerInput.includes('metodologia') || lowerInput.includes('como enseñan') || lowerInput.includes('modelo educativo')) {
+    return faqs.metodologia;
+  }
+  if (lowerInput.includes('cambridge') || lowerInput.includes('ingles') || lowerInput.includes('bilingue')) {
+    return faqs.cambridge;
+  }
+  if (lowerInput.includes('contacto') || lowerInput.includes('telefono') || lowerInput.includes('direccion') || lowerInput.includes('donde')) {
+    return faqs.contacto;
+  }
+  
+  return {
+    title: '¿En qué puedo ayudarte?',
+    answer: 'Puedo ayudarte con información sobre admisiones 2026, costos, nuestra metodología educativa, certificación Cambridge o datos de contacto. ¿Sobre qué tema te gustaría saber más?',
+    action: null
+  };
+}
+---
+
+<div id="colrey-assistant" class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+  <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      </div>
+      <div>
+        <div class="font-bold text-white text-lg">Asistente COLREY</div>
+        <div class="text-white/80 text-sm">Powered by SuamoxIA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-6">
+    <div id="assistant-input-container" class="mb-6">
+      <div class="flex gap-3">
+        <input 
+          type="text" 
+          id="assistant-input" 
+          placeholder="Pregúntale al colegio sobre admisiones, costos o metodología"
+          class="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+        />
+        <button 
+          onclick="askAssistant()"
+          class="bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors flex items-center gap-2"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Enviar
+        </button>
+      </div>
+    </div>
+
+    <div id="assistant-response" class="hidden space-y-4">
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+        <div id="response-content"></div>
+      </div>
+    </div>
+
+    <div id="assistant-suggestions" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <button onclick="quickQuestion('admisiones')" class="text-left px-4 py-3 bg-gray-50 hover:bg-primary-50 rounded-xl border border-gray-200 hover:border-primary-300 transition-all text-sm font-medium text-gray-700 hover:text-primary-700">
+        ¿Cómo es el proceso de admisión?
+      </button>
+      <button onclick="quickQuestion('costos')" class="text-left px-4 py-3 bg-gray-50 hover:bg-primary-50 rounded-xl border border-gray-200 hover:border-primary-300 transition-all text-sm font-medium text-gray-700 hover:text-primary-700">
+        ¿Cuáles son los costos?
+      </button>
+      <button onclick="quickQuestion('metodologia')" class="text-left px-4 py-3 bg-gray-50 hover:bg-primary-50 rounded-xl border border-gray-200 hover:border-primary-300 transition-all text-sm font-medium text-gray-700 hover:text-primary-700">
+        ¿Cómo enseñan?
+      </button>
+      <button onclick="quickQuestion('cambridge')" class="text-left px-4 py-3 bg-gray-50 hover:bg-primary-50 rounded-xl border border-gray-200 hover:border-primary-300 transition-all text-sm font-medium text-gray-700 hover:text-primary-700">
+        ¿Tienen certificación Cambridge?
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const faqs = {
+    'admisiones': {
+      title: 'Admisiones 2026',
+      answer: 'Las admisiones 2026 están abiertas. El proceso incluye: solicitud de información, reunión informativa, entrega de documentos, evaluación y entrevista, comunicación de resultados y matrícula. Puedes iniciar el proceso completando el formulario en nuestra página de admisiones.',
+      action: {
+        text: 'Iniciar proceso de admisión',
+        link: '/admisiones-2026',
+        whatsapp: false
+      }
+    },
+    'costos': {
+      title: 'Costos y pensiones',
+      answer: 'Para conocer los costos y pensiones del año 2026, te invitamos a una reunión informativa donde resolveremos todas tus dudas. También puedes contactarnos directamente a través de WhatsApp o completar el formulario de contacto.',
+      action: {
+        text: 'Solicitar información de costos',
+        link: '/contacto',
+        whatsapp: true
+      }
+    },
+    'metodologia': {
+      title: 'Nuestra metodología',
+      answer: 'Nuestro modelo educativo se centra en la felicidad del estudiante, combinando aprendizaje significativo con metodologías lúdicas. Los estudiantes aprenden jugando, desarrollan competencias reales en inglés y alcanzan excelencia académica con valores sólidos.',
+      action: {
+        text: 'Conocer más sobre el modelo educativo',
+        link: '/el-colegio/modelo-educativo',
+        whatsapp: false
+      }
+    },
+    'cambridge': {
+      title: 'Certificación Cambridge',
+      answer: 'Somos una institución certificada por Cambridge English. Nuestros estudiantes desarrollan competencias comunicativas reales en inglés desde Prejardín, con certificación internacional que valida su dominio del idioma.',
+      action: {
+        text: 'Ver resultados y certificaciones',
+        link: '/el-colegio/resultados-certificaciones',
+        whatsapp: false
+      }
+    },
+    'contacto': {
+      title: 'Información de contacto',
+      answer: 'Puedes contactarnos a través de nuestro formulario de contacto, por WhatsApp o visitarnos en nuestras instalaciones. Nuestro equipo de admisiones está disponible para resolver todas tus dudas.',
+      action: {
+        text: 'Ir a contacto',
+        link: '/contacto',
+        whatsapp: true
+      }
+    }
+  };
+
+  function getAnswer(input) {
+    const lowerInput = input.toLowerCase();
+    
+    if (lowerInput.includes('admision') || lowerInput.includes('inscripcion') || lowerInput.includes('matricula')) {
+      return faqs.admisiones;
+    }
+    if (lowerInput.includes('costo') || lowerInput.includes('pension') || lowerInput.includes('precio') || lowerInput.includes('valor')) {
+      return faqs.costos;
+    }
+    if (lowerInput.includes('metodologia') || lowerInput.includes('como enseñan') || lowerInput.includes('modelo educativo')) {
+      return faqs.metodologia;
+    }
+    if (lowerInput.includes('cambridge') || lowerInput.includes('ingles') || lowerInput.includes('bilingue')) {
+      return faqs.cambridge;
+    }
+    if (lowerInput.includes('contacto') || lowerInput.includes('telefono') || lowerInput.includes('direccion') || lowerInput.includes('donde')) {
+      return faqs.contacto;
+    }
+    
+    return {
+      title: '¿En qué puedo ayudarte?',
+      answer: 'Puedo ayudarte con información sobre admisiones 2026, costos, nuestra metodología educativa, certificación Cambridge o datos de contacto. ¿Sobre qué tema te gustaría saber más?',
+      action: null
+    };
+  }
+
+  function showResponse(data) {
+    const responseDiv = document.getElementById('assistant-response');
+    const contentDiv = document.getElementById('response-content');
+    const suggestionsDiv = document.getElementById('assistant-suggestions');
+    
+    contentDiv.innerHTML = `
+      <h3 class="font-bold text-gray-900 text-xl mb-3">${data.title}</h3>
+      <p class="text-gray-700 leading-relaxed mb-4">${data.answer}</p>
+      ${data.action ? `
+        <a href="${data.action.link}" class="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors">
+          ${data.action.text}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      ` : ''}
+    `;
+    
+    responseDiv.classList.remove('hidden');
+    suggestionsDiv.classList.add('hidden');
+    
+    responseDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function askAssistant() {
+    const input = document.getElementById('assistant-input');
+    const question = input.value.trim();
+    
+    if (!question) return;
+    
+    // Simular procesamiento
+    input.disabled = true;
+    
+    setTimeout(() => {
+      const answer = getAnswer(question);
+      showResponse(answer);
+      input.disabled = false;
+      input.value = '';
+    }, 500);
+  }
+
+  function quickQuestion(type) {
+    const answer = faqs[type];
+    if (answer) {
+      showResponse(answer);
+    }
+  }
+
+  // Permitir Enter en el input
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('assistant-input');
+    if (input) {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          askAssistant();
+        }
+      });
+    }
+  });
+</script>

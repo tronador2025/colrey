@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Vida Escolar - Colegio COLREY | Instalaciones, Galería y Testimonios"
+  description="Conoce la vida escolar en COLREY: nuestras instalaciones, galería de actividades y testimonios de estudiantes y familias. Un ambiente feliz y enriquecedor."
+>
+  <!-- Hero Visual -->
+  <section class="relative py-32 lg:py-40 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="/img_00.png" alt="Vida escolar COLREY" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-500/80 via-primary-400/75 to-primary-600/80"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center text-white fade-in-up">
+        <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl">
+          Un día en COLREY
+        </h1>
+        <p class="text-xl lg:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
+          Ambiente feliz, seguro y enriquecedor
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bloque Narrativo Principal -->
+  <section class="py-20 lg:py-32 bg-white">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="max-w-4xl mx-auto fade-in-up">
+        <p class="text-xl text-gray-700 leading-relaxed mb-8">
+          La vida escolar en COLREY trasciende las aulas. Es un ecosistema donde cada espacio, cada actividad y cada interacción está diseñada para que los estudiantes se sientan valorados, seguros y motivados a aprender. Nuestras instalaciones modernas y espacios recreativos se convierten en extensiones naturales del proceso educativo.
+        </p>
+        <p class="text-xl text-gray-700 leading-relaxed mb-8">
+          Desde las actividades deportivas que fomentan el trabajo en equipo, hasta los proyectos artísticos que desarrollan la creatividad, cada momento en COLREY es una oportunidad de crecimiento. Nuestros estudiantes no solo aprenden contenidos académicos, sino que desarrollan habilidades sociales, emocionales y valores que los acompañarán toda la vida.
+        </p>
+        <p class="text-xl text-gray-700 leading-relaxed">
+          La comunidad educativa COLREY se caracteriza por su cercanía, su compromiso y su capacidad de crear un ambiente donde la felicidad y el aprendizaje van de la mano. Este es el día a día que viven nuestros estudiantes y sus familias.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soporte Visual -->
+  <section class="py-16 lg:py-24 bg-gray-50">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="max-w-5xl mx-auto fade-in-up">
+        <img src="/img_00.png" alt="Vida escolar COLREY" class="w-full h-auto rounded-3xl shadow-2xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Único -->
+  <section class="py-20 lg:py-32 bg-white">
+    <div class="container mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center fade-in-up">
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          Conocer el proceso de admisiones
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Únete a nuestra comunidad educativa y vive la experiencia COLREY
+        </p>
+        <a href="/admisiones-2026" class="inline-block bg-primary-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-700 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+          Iniciar proceso de admisión
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  section:nth-child(1) .fade-in-up {
+    animation-delay: 0.2s;
+  }
+
+  section:nth-child(2) .fade-in-up {
+    animation-delay: 0.1s;
+  }
+
+  section:nth-child(3) .fade-in-up {
+    animation-delay: 0.1s;
+  }
+
+  section:nth-child(4) .fade-in-up {
+    animation-delay: 0.1s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-up {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in-up').forEach(el => {
+    observer.observe(el);
+  });
+</script>
