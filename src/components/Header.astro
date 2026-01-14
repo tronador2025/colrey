@@ -57,6 +57,10 @@ const currentPath = Astro.url.pathname;
           Vida Escolar
         </a>
 
+        <a href="/galeria" class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPath === '/galeria' ? 'bg-primary-50 text-primary-700' : 'text-gray-700 hover:bg-gray-50'}`}>
+          Galería
+        </a>
+
         <div class="relative group">
           <button class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center space-x-1">
             <span>Plataformas</span>
@@ -110,6 +114,7 @@ const currentPath = Astro.url.pathname;
           </div>
         </div>
         <a href="/vida-escolar" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Vida Escolar</a>
+        <a href="/galeria" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Galería</a>
         <div class="px-4 py-2">
           <div class="text-sm font-semibold text-gray-900 mb-2">Plataformas</div>
           <div class="pl-4 space-y-1">
